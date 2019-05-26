@@ -8,7 +8,7 @@ echo
 read -n 1 -s -r -p "PRESS ANY KEY TO CONTINUE"
 
 echo
-echo $EUID &>/dev/null
+echo $UID &>/dev/null
 if  [[ "$UID" != "0" ]]; then
 	echo "Sorry you must have root privledges for to run this program"
 	exit
