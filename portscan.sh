@@ -47,4 +47,12 @@ elif [[ "$PORTVAR" != "T" ]]; then
 	echo "Scanning ALL Ports..." && nmap -sU -sT -p- $IP -T4 --spoof-mac $MAC
 fi
 
+echo "Would you like to 'CURL' this domain and save it to a file to analyze? Type Y for Yes or N for No!"
+read ANS1
 
+if [[ "$ANS1" == "Y" ]]; then
+	echo "Saved to $HOME/NewSiteScan.txt" && curl $DOMAIN -D --dump-header -o "$HOME/NewSiteScan.txt" 
+elif [[ "$ANS1" != "Y" ]]; then
+	echo "Domain not Saved!" 
+	exit
+fi
