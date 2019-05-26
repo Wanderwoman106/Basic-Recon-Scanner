@@ -3,7 +3,7 @@
 
 ## Dependencies
 
-NMAP
+NMAP (https://nmap.org)
 
 BASH (BOURNE AGAIN SHELL)
 
