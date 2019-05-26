@@ -1,6 +1,6 @@
 #! /bin/bash
 
-##Basic ass automated tool to run some scans on a domain/host using nmap and other net tools. 
+#Basic Recon/Scanning tool to help gather some data quickly on a target. Also my first script.
 
 echo "Simple Re-Con Shell Script for gathering Target data. Must be ran as Root User"
 echo
