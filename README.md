@@ -2,8 +2,11 @@
 ## Basic Recon tool for scanning hosts/domains (BASH)
 
 ## Dependencies
+
 NMAP
+
 BASH (BOURNE AGAIN SHELL)
+
 
 This program should be ran as root user.
 
