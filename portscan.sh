@@ -9,10 +9,10 @@ read -n 1 -s -r -p "PRESS ANY KEY TO CONTINUE"
 
 echo
 echo $EUID &>/dev/null
-if  [[ "$EUID" != "0" ]]; then
+if  [[ "$UID" != "0" ]]; then
 	echo "Sorry you must have root privledges for to run this program"
 	exit
-elif [[ "$EUID" == "0" ]]; then
+elif [[ "$UID" == "0" ]]; then
 	 echo "Enter Domain To Start Scanning..."
 		read DOMAIN
 fi
