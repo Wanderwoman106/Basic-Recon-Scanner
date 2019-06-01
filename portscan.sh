@@ -4,30 +4,32 @@
 
 echo "Simple Re-Con Shell Script for gathering Target data. Must be ran as Root User"
 echo
-
-read -n 1 -s -r -p "PRESS ANY KEY TO CONTINUE"
-
 echo
 echo $UID &>/dev/null
 if  [[ "$UID" != "0" ]]; then
 	echo "Sorry you must have root privledges for to run this program"
 	exit
 elif [[ "$UID" == "0" ]]; then
-	 echo "Enter Domain To Start Scanning..."
-		read DOMAIN
+	read -n 1 -s -r -p "PRESS ANY KEY TO CONTINUE..."	
 fi
 
+echo "Enter a DOMAIN to begin scanning, If you are unsure of the domain, leave this input blank"
+echo "and only have the IP address, then leave this input blank."
+read DOMAIN
+
+if [[ -z "$DOMAIN" ]]; then
+	echo "Enter an IP to scan"
+		read IP 
+			echo "Scanning $IP..." && nmap -PM -Pn $IP
+elif [[ -n "$DOMAIN" ]]; then
+	echo "Scanning $DOMAIN...." && nmap -PM -Pn $DOMAIN
+		echo "Now Enter the IP to your Domain"
+		read IP
+fi
+
+whois -R $IP
 echo
-echo "Scanning...."
-
-nmap -PS -Pn $DOMAIN
-
-echo "To continue scanning options, enter target IP. To quit hit CTRL+C"
-read IP
-
-whois $IP
-
-read -n 1 -s -r -p "PRESS ANY KEY TO CONTINUE"
+echo "Above is the WHOIS info for your host."
 echo
 
 echo "Next, let's spoof our MAC address for scanning anonymity purposes."
