@@ -1,6 +1,7 @@
 #! /bin/bash
 
 #Basic Recon/Scanning tool to help gather some data quickly on a target. Also my first script.
+#
 
 echo "Simple Re-Con Shell Script for gathering Target data. Must be ran as Root User"
 echo
@@ -14,7 +15,6 @@ elif [[ "$UID" == "0" ]]; then
 fi
 
 echo "Enter a DOMAIN to begin scanning, If you are unsure of the domain, leave this input blank"
-echo "and only have the IP address, then leave this input blank."
 read DOMAIN
 
 if [[ -z "$DOMAIN" ]]; then
@@ -49,11 +49,17 @@ elif [[ "$PORTVAR" != "T" ]]; then
 	echo "Scanning ALL Ports..." && nmap -sU -sT -p- $IP -T4 --spoof-mac $MAC
 fi
 
+echo "For Detailed information including services & protocols on specific ports"
+echo "Input the port numbers to scan either separate by commas, or formatted 21-25 etc."
+read PVAR2
+
+echo "Scanning..." && nmap -sZ -sV $IP -p $PVAR2 -A 
+
 echo "Would you like to 'CURL' this domain and save it to a file to analyze? Type Y for Yes or N for No!"
 read ANS1
 
 if [[ "$ANS1" == "Y" ]]; then
-	echo "Saved to $HOME/NewSiteScan.txt" && curl $DOMAIN -D -o "$HOME/NewSiteScan.txt" 
+	echo "Saved to $HOME/$IP_Scan.txt" && curl $DOMAIN -D -o "$HOME/$IP_Scan.txt" 
 elif [[ "$ANS1" != "Y" ]]; then
 	echo "Domain not Saved!" 
 	exit
